@@ -1,6 +1,6 @@
 //declare variables per lab 5.1 instructions
 let age=21;
-let fav_number=7;
+let fav_num=7;
 let day_of_birth=23;
 let month_of_birth=6;
 

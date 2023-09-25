@@ -52,7 +52,7 @@
         <p>&dollar;10.00</p>
         <img src="http://dport96.github.io/ITM352/morea/080.flow-control-II/Blackberry.jpg"/>
     </section>
-</div></main>
+</div></main></body>
     <footer>
         <h1>
             <script> 
@@ -60,7 +60,7 @@
             </script>
             
         </h1>
-    </footer>
+    
     <script>
         function changeClassName(element) {
                 element.className = 'item rotate';
@@ -80,13 +80,15 @@
             let now = new Date();
             let year = now.getFullYear();
             let hours = now.getHours();
+            let hours = (hours24 + 11) % 2 + 1;
             let minutes = now.getMinutes();
+            let time = hours + ":" + minutes;
             let amPm = hours < 12 ? 'AM' : 'PM';
 
-        document.write(`
+            document.write(`
                 
                     <tr>
-                        <th colspan="2"><h1>Your One Stop For Used Phones - ${first_name[0]}.+${last_name[0]}+.'s</h1>
+                        <th colspan="2"><h1>Your One Stop For Used Phones - ${first_name[0]}.${last_name[0]}.'s</h1>
                         </th>
                     </tr>
                 
@@ -103,10 +105,10 @@
                     <tr>
                         <td>${line3}</td>
                         <td>${time}${amPm}</td>
-                    </tr>`);
+                    </tr>
+                `);
 
         </script> 
     </table>
-    
-</body>
+</footer>
 </html>

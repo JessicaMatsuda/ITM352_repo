@@ -79,7 +79,7 @@
             let line3=3;
             let now = new Date();
             let year = now.getFullYear();
-            let hours = now.getHours();
+            let hours24 = now.getHours();
             let hours = (hours24 + 11) % 2 + 1;
             let minutes = now.getMinutes();
             let time = hours + ":" + minutes;

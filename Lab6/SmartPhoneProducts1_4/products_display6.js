@@ -12,7 +12,8 @@ bottom_title.innerHTML=("Your one stop shop for used phones - "+store_name+"'s")
 //initialize hits and spins and send to the DOM
 let hits=0;
 let spins=0;
-let wins;
+//let wins;
+let over_half=false;
 hits_san.innerHTML=hits;
 spins_span.innerHTML=spins;
 
@@ -23,11 +24,13 @@ function changeClassName(element){
     element.className = 'item rotate';
     spins=spins+1;
     if(spins<2*hits&&hits<spins){
-        wins=true;
+        //wins=true;
+        over_half=true;
     } else {
-        wins=false;
+        //wins=false;
     }
-    win_span.innerHTML=wins;
+    //win_span.innerHTML=wins;
+    win_span.innerHTML=over_half;
     spins_span.innerHTML=spins;
     hit_spin_span.innerHTML=(hits/spins).toFixed(2);
 }
@@ -37,11 +40,14 @@ function resetClassName(element){
     element.className='item';
     hits=hits+=2;
     if(spins<2*hits&&hits<spins){
-        wins=true;
+        //wins=true;
+        over_half=true;
     } else {
-        wins=false;
+        //wins=false;
     }
-    win_span.innerHTML=wins;
-    hits_span.innerHTML=hits;
+    //win_span.innerHTML=wins;
+    win_span.innerHTML=over_half;
+    spins_span.innerHTML=spins;
+    hit_spin_span.innerHTML=(hits/spins).toFixed(2);
 
 }

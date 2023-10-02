@@ -21,8 +21,14 @@ spins_span.innerHTML=spins;
 
 //this should be two functions or more but... it changes the item name to rotate for the images and updates
 function changeClassName(element){
-    element.className = 'item rotate';
-    spins=spins+1;
+    if(element.className=='item'){
+        spins=spins+1;
+        element.className = 'item rotate';
+
+    }
+
+    
+    //spins=spins+1;
     if(spins<2*hits&&hits<spins){
         //wins=true;
         over_half=true;
@@ -37,8 +43,14 @@ function changeClassName(element){
 
 //this should be two functions or more but... it changes the item name by removing the rotate for the images and
 function resetClassName(element){
-    element.className='item';
-    hits=hits+=2;
+    if(element.className=='item rotate'){
+        hits=hits+=2;
+        element.className='item';
+    } else{
+        changeClassName(element);
+    }
+   
+    
     if(spins<2*hits&&hits<spins){
         //wins=true;
         over_half=true;

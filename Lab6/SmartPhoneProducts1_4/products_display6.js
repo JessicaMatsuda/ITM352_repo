@@ -43,7 +43,7 @@ function changeClassName(element){
 hits_spins_ratio = hits/spins;
 let hits_spins_ratio=hits/spins;
 let progress;
-if ( hits_spins_ratio > 0 ) {
+/*if ( hits_spins_ratio > 0 ) {
     progress = 'On your way!';
     if ( hits_spins_ratio >= 0.25 ) {
         progress = 'Almost there!';
@@ -56,6 +56,16 @@ if ( hits_spins_ratio > 0 ) {
 }
 else {
     progress = 'Get going!' ;
+} */
+if(hits_spins_ratio >= 0.5 && hits<spins) {
+    progress='You win!';
+} else if(hits_spins_ratio >= 0.25) {
+progress='Almost there!';
+} else if(hits_spins_ratio>0) {
+progress='On your way!';
+}
+else {
+progress='Get going!';
 }
 win_span.innerHTML=progress;
 

@@ -1,28 +1,28 @@
 table {
-    width: 100%;
     border-collapse: collapse;
+    width: 100%;
     font-family: Arial, sans-serif;
     border: 2px solid #000; 
 }
 
-thead th {
-    text-align: left;
+table, td {
     padding: 8px;
-    border: 1px solid #000; 
+    border: 1px solid #000;
+    text-align: left; 
 }
 
-tbody td {
-    text-align: left;
+th, td {
     padding: 8px;
     border: 1px solid #000; 
-}
-
-tfoot td {
     text-align: left;
-    padding: 8px;
-    border: 1px solid #000; 
 }
 
-tfoot td:last-child {
+th {
+    padding: 8px;
+    border: 3px double #000; 
+    text-align: left;
+}
+
+tfoot {
     font-weight: bold;
 }

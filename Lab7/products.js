@@ -32,9 +32,9 @@ while(productCount<=num_products){
 //exercise 1.2
 console.log();
 console.log("exercise1.2");
-productCount=1
+productCount=1;
 while(productCount<=num_products){
-    console.log(productcount+'. '+eval('name'+productCount));
+    console.log(productCount+'. '+eval('name'+productCount));
     productCount++
 }
 

@@ -92,4 +92,5 @@
 //Subtotal, Tax, and Grand Total
     document.getElementById('subtotal_cell').innerHTML = '$' + subtotal.toFixed(2);
     document.getElementById('tax_cell').innerHTML = '$' + tax.toFixed(2);
-    document.getElementById('grandtotal_cell').innerHTML = '$' + grand_total.toFixed(2);
+    document.getElementById("shipping_cell").innerHTML = '$' + shipping.toFixed(2);
+    document.getElementById('total_cell').innerHTML = '$' + grand_total.toFixed(2);

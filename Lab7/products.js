@@ -82,12 +82,12 @@ productCount=1;
 while(productCount<=num_products){
     if (productCount>=num_products/2){
         console.log("Don't ask for anything else");
-        process.exit();
+        //process.exit();
     }
     if (productCount>=lowerBound&&productCount<=upperBound){
         console.log(eval('name'+productCount)+'is sold out!!');
     } else{
-        console.log(productCount+'. 'eval('name'+productCount));
+        console.log(productCount+'. '+eval('name'+productCount));
     }
     productCount++;
     }
@@ -116,3 +116,14 @@ for(let i=1; eval("typeof name"+i)!='undefined';i++){
 }
 
 //exercise 4.2
+//create table header
+document.write('<table border="1">');
+document.write('<tr><th>Number</th><th>Item</th></tr>')
+
+//loop to output rows
+for (let i=1; eval("typeof name"+i)!='undefined'; i++) {
+    document.write(`<tr><td>${i}</td><td>${eval("name"+i)}</td></tr>`);
+}
+
+//close table
+document.write('</table');

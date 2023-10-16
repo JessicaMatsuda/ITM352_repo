@@ -12,7 +12,7 @@ let hits=0;
 let spins=0;
 //let wins;
 let over_half=false;
-hits_san.innerHTML=hits;
+hits_span.innerHTML=hits;
 spins_span.innerHTML=spins;
 
 

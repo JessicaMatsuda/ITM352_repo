@@ -24,20 +24,37 @@ for (let i=0; i < product_quantities.length; i++) {
     let product = products[i];
     let extended_cost = quantity*product.price;
 
-    document.write("<tr>");
-    document.write("<td>" + (i+1) + "</td>"); // Product #
-    document.write("<td>" + product.name + "</td>"); // Name
-    document.write("<td>" + product.price.toFixed(2) + "</td>"); // Price
-    document.write("<td>" + quantity + "</td>"); // Quantity
-    document.write("<td>" + extended_cost.toFixed(2) + "</td>"); // Extended Cost
-    document.write("</tr>");
-}
-document.write("</table>");
+    //Create a new row for each product and add hover effect
+    let newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td>${i + 1}</td>
+        <td>${product.name}</td>
+        <td>${product.price.toFixed(2)}</td>
+        <td>${quantity}</td>
+        <td>${extended_cost.toFixed(2)}</td>
+    `;
+    // Append the new row to the table
+    document.querySelector('table').appendChild(newRow);
 
-let deleteButton = document.createElement('button');
-deleteButton.textContent = 'Delete Last Row';
-deleteButton.addEventListener('click', deleteLastRow);
-document.body.appendChild(deleteButton);
+    newRow.addEventListener('mouseover', function () {
+        newRow.style.backgroundColor = 'yellow'; 
+    });
+
+
+    newRow.addEventListener('mouseout', function() {
+        newRow.style.backgroundColor = ''; 
+    });
+    
+    newRow.addEventListener('click', function() {
+        document.querySelector('table').deleteRow(newRow.rowIndex);
+    });
+
+}
+
+let addButton = document.createElement('button');
+addButton.textContent = 'Add New Row';
+addButton.addEventListener('click', addNewRow);
+document.body.appendChild(addButton);
 
 function addNewRow () {
     let table = document.querySelector('table');
@@ -50,17 +67,22 @@ function addNewRow () {
         <td> blank </td>
         <td> blank </td>
     `;
+    newRow.addEventListener('mouseover', function () {
+        newRow.style.backgroundColor = 'yellow'; 
+    });
+
+
+    newRow.addEventListener('mouseout', function() {
+        newRow.style.backgroundColor = ''; 
+    });
+
+    newRow.addEventListener('click', function() {
+        table.deleteRow(newRow.rowIndex);
+    });
 };
-
-// Add a click event listener to the table to trigger the addNewRow function 
-document.addEventListener('DOMContentLoaded', function () {
-    let table = document.querySelector('table');
-    table.addEventListener('click', addNewRow);
-});
-
-
+/*
 //Function to delete the last row of the table
-function deleteLastRow() {
+function deleteClickedRow() {
     let table = document.querySelector('table');
     let rowCount = table.rows.length; // gives row count for table
 
@@ -69,3 +91,4 @@ function deleteLastRow() {
     };
 
 };
+*/

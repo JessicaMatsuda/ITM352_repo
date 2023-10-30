@@ -22,7 +22,8 @@ h1, h2 {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1; /* Puts the background behind the content of .main */
+  z-index: -1; 
+  
 }
 
 /* Styling the products display */

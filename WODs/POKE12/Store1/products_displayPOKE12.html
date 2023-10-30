@@ -22,55 +22,62 @@
     
 </head>
 <body onload="hits_span.innerHTML = hits; spins_span.innerHTML = spins;">
-    
-<h1><span id="top_title"></span></h1>
-    <div><main class="main">
-    
-</div></main></body>
+    <form action ="./invoice3.html" method="GET">
+        <h1><span id="top_title"></span></h1>
+        <div>
+            <main class="main">
+                <!-- products will be appended here via js-->
+            </main>
+        </div>
+        <footer>
+            <input type="submit" value="Purchase" class="purchase-btn">
+        </footer>
+    </form>
+</body>
     <footer>
         <h1>
            <span id="bottom_title"></span> 
         </h1>
     
-    <script src="products_displayPOKE12.js"></script>
+        <script src="products_displayPOKE12.js"></script>
 
-    <table border="1" style="margin-left: auto; margin-right: auto; text-align: center;">
-        <script>
-            let line=1;
-            let line2=2;
-            let line3=3;
-            let now = new Date();
-            let year = now.getFullYear();
-            let hoursx = now.getHours();
-            let hours = (hoursx + 11) % 12 + 1;
-            let minutes = now.getMinutes();
-            let time = hours + ":" + minutes;
-            let amPm = hours > 12 ? 'AM' : 'PM';
+        <table border="1" style="margin-left: auto; margin-right: auto; text-align: center;">
+            <script>
+                let line=1;
+                let line2=2;
+                let line3=3;
+                let now = new Date();
+                let year = now.getFullYear();
+                let hoursx = now.getHours();
+                let hours = (hoursx + 11) % 12 + 1;
+                let minutes = now.getMinutes();
+                let time = hours + ":" + minutes;
+                let amPm = hours > 12 ? 'AM' : 'PM';
 
-            document.write(`
-                
-                    <tr>
-                        <th colspan="2"><h1>Your One Stop For Used Phones - ${first_name[0]}.${last_name[0]}.'s</h1>
-                        </th>
-                    </tr>
-                
-                    <tr>
-                        <td>${line}</td>
-                        <td><br>Copyright @ ${first_name} ${last_name}</td>
-                    </tr>
-                
-                    <tr>
-                        <td>${line2}</td>
-                        <td>${year}</td>
-                    </tr>
-                
-                    <tr>
-                        <td>${line3}</td>
-                        <td>${time}${amPm}</td>
-                    </tr>
-                `);
+                document.write(`
+                    
+                        <tr>
+                            <th colspan="2"><h1>Your One Stop For Used Phones - ${first_name[0]}.${last_name[0]}.'s</h1>
+                            </th>
+                        </tr>
+                    
+                        <tr>
+                            <td>${line}</td>
+                            <td><br>Copyright @ ${first_name} ${last_name}</td>
+                        </tr>
+                    
+                        <tr>
+                            <td>${line2}</td>
+                            <td>${year}</td>
+                        </tr>
+                    
+                        <tr>
+                            <td>${line3}</td>
+                            <td>${time}${amPm}</td>
+                        </tr>
+                    `);
 
-        </script> 
-    </table>
-</footer>
+            </script> 
+        </table>
+    </footer>
 </html>

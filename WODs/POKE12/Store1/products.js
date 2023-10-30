@@ -3,7 +3,7 @@
 //let quantity = [2,1,1,3,12];
 
 // Define the quantities in the array
-let quantity = [2,'cat',-0.1,-3,0.12];
+//let quantity = [2,'cat',-0.1,-3,0.12];
 
 
 //Define the item objects with brand and quantity attributes
@@ -35,4 +35,4 @@ let itemData = [
     },
 ];
 
-export { itemData, quantity };
+export { itemData };

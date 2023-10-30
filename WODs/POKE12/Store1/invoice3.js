@@ -2,8 +2,24 @@
 
 ///this is invoice3 without any validation logic...
 
+
+//fetch the query sting parameters
+const params=new URL(document.location).searchParams;
+//loop thru the expected quantity parameters and udpate the quantity array
+
+let quantity=[];
+
+for (let i=0; i<itemData.length; i++){
+  let quantityValue = params.get(`quantity${i}`);
+  if (quantityValue !==null) {
+    quantity[itemData[i].quantityIndex] = Number(quantityValue);
+  }
+};
+
+
 //import data from products.js into this file
-import { itemData, quantity } from './products.js';
+//import { itemData, quantity } from './products.js';
+import { itemData} from './products.js';
 
 /*
 //Compute subtotal

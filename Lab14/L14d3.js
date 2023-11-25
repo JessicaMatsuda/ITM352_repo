@@ -95,29 +95,44 @@ app.listen(8080, () => console.log(`listening on port 8080`));
 app.get("/register", function (request, response) {
     // Give a simple register form
     str = `
-<body>
-<form action="" method="POST">
-<input type="text" name="username" size="40" placeholder="enter username" ><br />
-<input type="password" name="password" size="40" placeholder="enter password"><br />
-<input type="password" name="repeat_password" size="40" placeholder="enter password again"><br />
-<input type="email" name="email" size="40" placeholder="enter email"><br />
-<input type="submit" value="Submit" id="submit">
-</form>
-</body>
+        <body>
+        <form action="" method="POST">
+        <input type="text" name="username" size="40" placeholder="enter username" ><br />
+        <input type="password" name="password" size="40" placeholder="enter password"><br />
+        <input type="password" name="repeat_password" size="40" placeholder="enter password again"><br />
+        <input type="email" name="email" size="40" placeholder="enter email"><br />
+        <input type="submit" value="Submit" id="submit">
+        </form>
+        </body>
     `;
     response.send(str);
  });
 
-app.post("/register", function (request, response) {
+ app.post ("/register", function (request, response) {
     // process a simple register form
     let new_user = request.body.username;
-    
-        user_reg_data[new_user] = {};
-        user_reg_data[new_user].name = request.body.name;
-        user_reg_data[new_user].password = request.body.password;
-        user_reg_data[new_user].email = request.body.email;
 
-        fs.writeFileSync(filename, JSON.stringify(user_reg_data), 'utf-8');
+    let errors = false;
+    let resp_msg = "";
+
+    if (typeof user_reg_data[new_user] != 'undefined') {
+        resp_msg = 'Username unavailable. Please enter a different username.';
+        errors = true;
+    } else if (request.body.password == request.body.repeat_password) {
+        user_reg_data[new_user] = {};
+        user_reg_data[new_user].name = request.body. name;
+        user_reg_data[new_user].password = request.body .password;
+        user_reg_data[new_user].email = request.body.email;
         
-        response.redirect(`./login`);
- });
+        fs.writeFileSync(filename, JSON.stringify (user_reg_data), 'utf-8');
+        response.redirect( `./login`);
+
+    } else {
+        resp_msg = 'Repeat password does not match with password.'
+        errors = true;
+    }
+
+    if (errors) {
+    response.send (resp_msg) ;
+    }
+    });

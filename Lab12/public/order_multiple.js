@@ -30,6 +30,9 @@ if (error) {
  //push the form content to the DOM
  form.innerHTML=formHTML;
 }
+
+
+
 //add the checkQuantityTextbox() 
 function checkQuantityTextbox(theTextbox) {
  let errs = validateQuantity(theTextbox.value, true);

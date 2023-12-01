@@ -25,17 +25,23 @@ app.get('/use_session', (req, res) => {
     res.send(`Welcome, your session ID is ${req.session.id}`); 
 })
 
+
+
 // THIS IS FROM LAB 14 COPY IT OVER LATER and we added stuff so i added it
-app.get("login", function (request, response) {
-    let username = request.cookies.username;
-    if (!username) {
-        
+app.get("/login", function (request, response) {
+
+    // in the str = ... find the body and under errMsg div create 
+    <p id ="welcome"></p>
+
+    let username = request.cookies.username || '';
+    if (username.length!=0) {
+        document.getElementById("welcome") = `Welcome ${username}!`;
     }
 
 })
 
 
-    res.cookie('username', `${username_entered}`);
+    response.cookie('username', `${username_entered}`);
     const userSession = request.session;
     //If there is no last login...
     if (!userSession.lastLogin) {
@@ -48,3 +54,9 @@ app.get("login", function (request, response) {
     response_msg = `${username_entered} is logged in. Last login: ${userSession.lastLogin}`;
 
 
+
+
+
+    
+
+    

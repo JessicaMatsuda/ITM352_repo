@@ -7,6 +7,9 @@ app.use(express.urlencoded({ extended: true }));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+const session = require('express-session');
+app.use(session({secret: "MySecretKey", resave: true, saveUninitialized: true}));
+
 // Set cookie - arrow function
 app.get('/set_cookie', (req, res) => {
     // cookie with username parameter
@@ -21,14 +24,10 @@ app.get('/use_cookie', (req, res) => {
     res.send(`Welcome to the Use Cookie page, ${username}.`);
 })
 
-
-
-
-
-
-
-
-
+// its the session id that came from the session and the session was done on the server
+app.get('/use_session', (req, res) => {
+    res.send(`Welcome, your session ID is ${req.session.id}`); 
+})
 
 
 // modified for extra credit 2 to push error message with login prompts
@@ -73,6 +72,21 @@ app.post("/login", function (request, response) {
         // Check if the password matches with the username
         if (password_entered == user_reg_data[username_entered].password) {
             response_msg = `${username_entered} is logged in.`;
+        
+        
+            const userSession = request.session;
+            //If there is no last login...
+            if (!userSession.lastLogin) {
+                userSession.lastLogin = "First visit!"
+            } else {
+                // Give current date based upon date obj called
+                userSession.lastLogin = new Date().toLocaleString();
+            }
+        
+        
+             //overwrite with current data and time after first visit
+            response_msg = `${username_entered} is logged in. Last login: ${userSession.lastLogin}`;
+
         } else {
             response_msg = `Incorrect password.`;
             errors = true;

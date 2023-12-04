@@ -7,6 +7,9 @@ app.use(express.urlencoded({ extended: true }));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+const session = require('express-session');
+app.use(session({secret: "MySecretKey", resave: true, saveUninitialized: true}));
+
 // Set cookie - arrow function
 app.get('/set_cookie', (req, res) => {
     // cookie with username parameter
@@ -21,32 +24,47 @@ app.get('/use_cookie', (req, res) => {
     res.send(`Welcome to the Use Cookie page, ${username}.`);
 })
 
-
-
-
-
-
-
-
-
+// its the session id that came from the session and the session was done on the server
+app.get('/use_session', (req, res) => {
+    res.send(`Welcome, your session ID is ${req.session.id}`); 
+    //req.session.destroy();
+    
+})
 
 
 // modified for extra credit 2 to push error message with login prompts
 app.get("/login", function (request, response) {
     // Give a simple login form
-    str = `
+    const login_form = `
         <script>
+        function getCookieValue(cookieName) {
+            let cookies = document.cookie.split(';'); // Split the entire cookie string by ';'
+            for (let i=0; i<cookies.length;i++) {
+                let cookiePair = cookies[i].trim().split ('='); // Split each individual cookie into key and value
+                if (cookiePair[0] === cookieName) {
+                    return CookiePair[1]; // Return the value if the name matches
+                }
+            }
+            return null; // Return null if the cookie is not found (does not exist)
+        }
+
             let params = (new URL(document.location)).searchParams;
             window.onload = function() {
                 if (params.has('error')) {
                     login_form['username'].value = params.get('username');
                     document.getElementById("errMsg").innerHTML = params.get("error");
                 }
+
+                let cookie_username=getCookieValue('username');
+                if (cookie_username) {
+                    document.getElementById("weclomeUser).innerHTML = 'Welcome back '+cookie_username+'!';
+                }
             }
         </script>
 
         <body>
         <div id="errMsg"></div>
+            <div id = "welcomeUser"></div>
         <form action="" method="POST" name="login_form">
         <input type="text" name="username" size="40" placeholder="enter username" ><br />
         <input type="password" name="password" size="40" placeholder="enter password"><br />
@@ -54,7 +72,7 @@ app.get("/login", function (request, response) {
         </form>
         </body>
     `;
-    response.send(str);
+    response.send(login_form);
 });
 
 app.post("/login", function (request, response) {
@@ -73,6 +91,23 @@ app.post("/login", function (request, response) {
         // Check if the password matches with the username
         if (password_entered == user_reg_data[username_entered].password) {
             response_msg = `${username_entered} is logged in.`;
+        
+            response.cookie('username', `${username_entered}`);
+            console.log('Login cookie has been sent.');
+
+            const userSession = request.session;
+            //If there is no last login...
+            if (!userSession.lastLogin) {
+                userSession.lastLogin = "First visit!"
+            } else {
+                // Give current date based upon date obj called
+                userSession.lastLogin = new Date().toLocaleString();
+            }
+        
+        
+             //overwrite with current data and time after first visit
+            response_msg = `${username_entered} is logged in. Last login: ${userSession.lastLogin}`;
+
         } else {
             response_msg = `Incorrect password.`;
             errors = true;
